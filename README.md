@@ -1,6 +1,6 @@
 # Riot OnScroll
 
-This riot tag changes it's classname on specific scroll criteria
+This riot tag changes a local property on specific scroll criteria
 
 This adds the ability to position, animate and fade in components
 as the page scrolls. 
