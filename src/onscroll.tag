@@ -2,7 +2,7 @@ onscroll
   <yield />
      
   script(type="coffee").
-          
+       
     @on 'mount',->
       window.addEventListener('scroll',@handleScroll)
       @inviewport = @inViewport()
@@ -13,13 +13,16 @@ onscroll
 
     @handleScroll = (e)=>
       newval = @inViewport()
-      if newval != @inviewport
+      diff = Math.abs((@pos.top+@pos.left) - (@prevPos.top+@prevPos.left))
+      if newval != @inviewport || diff>5
+        @prevPos = @pos
         @inviewport = newval
         @update()
 
     @inViewport = =>
-      rect = @root.getBoundingClientRect()
-      rect.bottom >= 0 &&
-      rect.right >= 0 &&
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.left <= (window.innerWidth || document.documentElement.clientWidth)
+
+      @pos = @root.getBoundingClientRect()
+      @pos.bottom >= 0 &&
+      @pos.right >= 0 &&
+      @pos.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      @pos.left <= (window.innerWidth || document.documentElement.clientWidth)
