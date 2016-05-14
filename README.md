@@ -1,4 +1,4 @@
-# Riot OnScroll
+<img src="https://cdn.rawgit.com/crisward/riot-onscroll/master/riot-onscroll.svg" height="140"/>
 
 This riot tag changes a local property on specific scroll criteria
 
