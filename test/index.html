@@ -1,43 +1,132 @@
 <!DOCTYPE html>
-<html>
 <head>
-  <title>Riot OnScroll</title>
+  <title>Riot OnScroll Demo</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    html{
-      background:#eee;
-      font-family: sans-serif
+    h1{
+      margin:0px;
+      transition:opacity 0.5s;
     }
-    h1,h2,h3,h4,h5{
-      padding:0px;
-      margin-top:0px
+    h2{
+      transition:color 0.5s;
+    }
+    h2.red{
+      color:#cc2200;
+      transition:color 0.5s;
+    }
+    .scrollshow{
+      opacity:1;
+      transition: all 2s;
+    }
+    
+    .slideins p{
+      opacity:1;
+      transition: all 0.5s;
+    }
+    .scrollhide{
+      opacity:0;
+      transition: all 2s;
+    }
+    .fadeout{
+      opacity:0;
+      transition:opacity 0.5s;
+    }
+    .fadein{
+      opacity:1;
+      transition:opacity 0.5s;
+    }
+    .fixedHeading{
+      z-index:2;
+      position:fixed;
+      top:0px;
+      padding:20px;
+      text-align:center;
+      left:0;
+      right:0;
+      background:#444;
+      color:white;
+      font-size:20px;
+      opacity:1;
+      transition: all 0.5;
+    }
+    p.fromleft{
+      opacity:0;
+      transition: all 0.5s;
+      transform: translateX(-300px);
+    }
+    p.fromright{
+      opacity:0;
+      transition: all 0.5s;
+      transform: translateX(300px);
     }
   </style>
 </head>
 <body>
+  <div class="container" style="overflow-x:hidden;">
+    <div class="col-sm-6 col-sm-offset-3">
+      <onscroll style="height:100px;display:block;padding:10px 0;">
+        <h1 class="{fadein:pos.top>-10,fadeout:inviewport,fixedHeading:!inviewport}">Demo of Riot onScoll Tag</h1>
+      </onscroll>
+      
+      <p>This is just some dummy content to give us a nice long scrollable area to see how well this component can work</p>
+      <onscroll>
+        <div style="height:200px;position:relative;border:1px solid #ddd;">
+          <div style="position:absolute;top:5px;text-align:center;right:0;left:0">pos.top:{pos.top}px</div>
+          <div style="position:absolute;top:90px;left:5px">pos.left:{pos.left}px</div>
+          <div style="position:absolute;top:90px;right:5px;">pos.right:{pos.right}px</div>
+          <div style="position:absolute;bottom:5px;text-align:center;right:0;left:0">pos.bottom:{pos.bottom}px</div>
+        </div>
+      </onscroll>
+      <onscroll>
+        <h2 class="{red:pos.top<250}">Subtitle will turn red when {pos.top} under 250 </h2>
+      </onscroll>
+      <p>Pellentesque rhoncus nec nisl non aliquam. Donec vitae vehicula lacus. Etiam convallis mattis velit, vitae elementum turpis. Etiam id sollicitudin lacus, in euismod nibh. Aliquam quis elementum lectus, ut dignissim nisi. Nullam in libero eu dolor bibendum accumsan. Aliquam in dignissim ex, non placerat justo. Sed sed lacinia dui, sit amet semper elit. Cras consectetur in eros ac bibendum. Etiam felis arcu, sagittis ut sem nec, imperdiet pharetra justo. Morbi eleifend erat id mattis imperdiet. Etiam id bibendum tellus. Etiam eu est sollicitudin, finibus velit at, posuere arcu.</p>
+      <onscroll>
+        <div class="{scrollshow:pos.top<400,scrollhide:pos.top>400}">
+         
+        <h3>This should fade in</h3>
+        <p>Maecenas a dapibus orci. Aliquam tristique id arcu a imperdiet. Nam ornare egestas tellus, vulputate pretium justo fermentum sit amet. Proin mollis risus ut ipsum auctor, id convallis dui auctor. Integer fermentum sit amet odio eget luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur ac elit massa. Aliquam rutrum feugiat odio, quis accumsan lorem bibendum et. Donec vitae metus ac ex iaculis posuere a eget diam. Aliquam a nisl placerat, volutpat augue nec, ultricies lectus. Maecenas ac dolor metus. Fusce auctor, ex a egestas dignissim, mi metus scelerisque nisi, in dignissim est nunc vel velit. Sed ultricies lacinia lacinia. Curabitur feugiat a quam non placerat.</p>
+        </div>
+      </onscroll>
+      
+      <onscroll>
+        <flipcard style="width:100%;min-height:340px;">
+          <div class="front" onscroll="{parent.pos.top<200?front():back()}">
+            <p>Example using riot flipcard {parent.pos.top}</p>
+            <img class="img-responsive" src="image1.jpg" />
+          </div>
+          <div class="back">
+            <p>Example using riot flipcard</p>
+            <img class="img-responsive" src="image2.jpg" />
+          </div>
+        </flipcard>
+      </onscroll>
+      <br>
+      <onscroll class="slideins">
+        <p class="{scrollshow:inviewport,scrollhide:!inviewport}">Vestibulum quis ornare nunc. Duis id risus purus. Aenean non gravida augue, nec pharetra turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam egestas commodo sapien et dignissim. Pellentesque ut neque suscipit ligula tincidunt congue. Nullam lectus lectus, feugiat at purus eu, porta tempor risus. Duis sed dolor eget mauris luctus aliquet eu interdum velit. Nullam vel enim mauris. Nam at vehicula massa. Sed ac lectus in orci gravida sagittis ut quis sem. Proin tortor turpis, condimentum in mollis sit amet, mattis sit amet urna. Pellentesque tincidunt orci id ex accumsan, non porta ipsum finibus. Suspendisse potenti.</p>
+ 
+        <p class="{fromleft:pos.top>320}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus facilisis velit eget placerat. Etiam aliquet ornare leo sit amet consequat. Aliquam porta metus quis purus mattis ullamcorper. Aliquam viverra erat purus, sit amet ultrices libero blandit quis. Vestibulum sed justo rhoncus, imperdiet arcu id, vestibulum massa. Pellentesque sed est enim. Cras vulputate ex a magna commodo efficitur.</p>
+        
+        <p class="{fromright:pos.top>160}">Vivamus sit amet rhoncus sapien. Nunc ac scelerisque eros. Donec sed magna eget nibh porttitor ultricies at id ligula. Suspendisse id lacus et libero congue rhoncus non vitae arcu. Curabitur dapibus sed justo non rutrum. Phasellus eget dapibus diam. Duis est velit, faucibus a turpis quis, rhoncus ultricies nulla.</p>
+        
+        <p class="{fromleft:pos.top>50}">Pellentesque rhoncus nec nisl non aliquam. Donec vitae vehicula lacus. Etiam convallis mattis velit, vitae elementum turpis. Etiam id sollicitudin lacus, in euismod nibh. Aliquam quis elementum lectus, ut dignissim nisi. Nullam in libero eu dolor bibendum accumsan. Aliquam in dignissim ex, non placerat justo. Sed sed lacinia dui, sit amet semper elit. Cras consectetur in eros ac bibendum. Etiam felis arcu, sagittis ut sem nec, imperdiet pharetra justo. Morbi eleifend erat id mattis imperdiet. Etiam id bibendum tellus. Etiam eu est sollicitudin, finibus velit at, posuere arcu.</p>
+        
+        <p class="{fromright:pos.top>-100}">Maecenas a dapibus orci. Aliquam tristique id arcu a imperdiet. Nam ornare egestas tellus, vulputate pretium justo fermentum sit amet. Proin mollis risus ut ipsum auctor, id convallis dui auctor. Integer fermentum sit amet odio eget luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur ac elit massa. Aliquam rutrum feugiat odio, quis accumsan lorem bibendum et. Donec vitae metus ac ex iaculis posuere a eget diam. Aliquam a nisl placerat, volutpat augue nec, ultricies lectus. Maecenas ac dolor metus. Fusce auctor, ex a egestas dignissim, mi metus scelerisque nisi, in dignissim est nunc vel velit. Sed ultricies lacinia lacinia. Curabitur feugiat a quam non placerat.</p>
+      </onscroll>      
+    </div>
+  </div>
 
-<style>
-  .show{
-    opacity:1;
-    transition: all 1s;
-  }
-  .hide{
-    opacity:0;
-    transition: all 1s;
-  }
-</style>
-<onscroll>
-  <p class="{show:inviewport,hide:!inviewport}">Your Content {inviewport}</p>
-</onscroll>
-<!-- force scrollbars -->
-<div style="height:2000px;width:10000px"></div>
-
-
-
-<script src="../node_modules/riot/riot+compiler.min.js"></script>
+<script src="https://cdn.jsdelivr.net/riot/2.4/riot+compiler.min.js"></script>
 <script src="../lib/onscroll.js"></script>
+<script src="../lib/flipcard.js"></script>
 <script>
   riot.mount('*')
 </script>
 
+<a href="https://github.com/crisward/riot-onscroll" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
 </body>
+
+
 </html>

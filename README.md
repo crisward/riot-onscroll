@@ -36,7 +36,10 @@ http://crisward.github.io/riot-onscroll/
 |Attribute  |Description
 |-----      |-----
 |inviewport | true if your onscroll tag in in the viewport
-|pos        | position of your element relative to the viewport (pos.top,pos.left,pos.bottom,pos.right)
+|pos.top    | distance between the top of the onscroll tag and the viewport top
+|pos.right  | distance between the right of the onscroll tag and the viewport right
+|pos.bottom | distance between the bottom of the onscroll tag and the viewport bottom
+|pos.left   | distance between the left of the onscroll tag and the viewport left
 
 
 ## License
