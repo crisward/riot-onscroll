@@ -1,6 +1,6 @@
 {
   "name": "riot-onscroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "scroll listening tag",
   "main": "lib/onscroll.js",
   "repository": {
