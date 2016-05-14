@@ -3,6 +3,10 @@
   <title>Riot OnScroll Demo</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <style>
+    h1{
+      margin:0px;
+      transition:opacity 0.5s;
+    }
     .scrollshow{
       opacity:1;
       transition: all 2s;
@@ -15,11 +19,15 @@
     }
     .fadeout{
       opacity:0;
-      transition: all 0.5;
+      transition:opacity 0.5s;
+    }
+    .fadein{
+      opacity:1;
+      transition:opacity 0.5s;
     }
     .fixedHeading{
       position:fixed;
-      top:-20px;
+      top:0px;
       padding:20px;
       text-align:center;
       left:0;
@@ -34,8 +42,8 @@
 <body>
   <div class="container">
     <div class="col-sm-6 col-sm-offset-3">
-      <onscroll>
-        <h1 class="{fadeout:pos.top<0,fixedHeading:!inviewport}">Demo of Riot onScoll Tag {pos.top}</h1>
+      <onscroll style="height:60px;display:block;padding:10px 0;">
+        <h1 class="{fadein:pos.top>-1,fadeout:pos.top<-1,fixedHeading:!inviewport}">Demo of Riot onScoll Tag</h1>
       </onscroll>
       <p>This is just some dummy content to give us a nice long scrollable area to see how well this component can work</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus facilisis velit eget placerat. Etiam aliquet ornare leo sit amet consequat. Aliquam porta metus quis purus mattis ullamcorper. Aliquam viverra erat purus, sit amet ultrices libero blandit quis. Vestibulum sed justo rhoncus, imperdiet arcu id, vestibulum massa. Pellentesque sed est enim. Cras vulputate ex a magna commodo efficitur.</p>
