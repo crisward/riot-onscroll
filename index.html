@@ -7,14 +7,24 @@
       margin:0px;
       transition:opacity 0.5s;
     }
+    h2{
+      transition:color 0.5s;
+    }
+    h2.red{
+      color:#cc2200;
+      transition:color 0.5s;
+    }
     .scrollshow{
       opacity:1;
       transition: all 2s;
-      transform: translateX(0);
+    }
+    
+    .slideins p{
+      opacity:1;
+      transition: all 0.5s;
     }
     .scrollhide{
       opacity:0;
-      transform: translateX(500px);
       transition: all 2s;
     }
     .fadeout{
@@ -26,50 +36,83 @@
       transition:opacity 0.5s;
     }
     .fixedHeading{
+      z-index:2;
       position:fixed;
       top:0px;
       padding:20px;
       text-align:center;
       left:0;
       right:0;
-      background:#fff;
+      background:#444;
+      color:white;
       font-size:20px;
       opacity:1;
       transition: all 0.5;
     }
+    p.fromleft{
+      opacity:0;
+      transition: all 0.5s;
+      transform: translateX(-300px);
+    }
+    p.fromright{
+      opacity:0;
+      transition: all 0.5s;
+      transform: translateX(300px);
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" style="overflow-x:hidden;">
     <div class="col-sm-6 col-sm-offset-3">
-      <onscroll style="height:60px;display:block;padding:10px 0;">
-        <h1 class="{fadein:pos.top>-1,fadeout:pos.top<-1,fixedHeading:!inviewport}">Demo of Riot onScoll Tag</h1>
+      <onscroll style="height:100px;display:block;padding:10px 0;">
+        <h1 class="{fadein:pos.top>-10,fadeout:inviewport,fixedHeading:!inviewport}">Demo of Riot onScoll Tag</h1>
       </onscroll>
+      
       <p>This is just some dummy content to give us a nice long scrollable area to see how well this component can work</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus facilisis velit eget placerat. Etiam aliquet ornare leo sit amet consequat. Aliquam porta metus quis purus mattis ullamcorper. Aliquam viverra erat purus, sit amet ultrices libero blandit quis. Vestibulum sed justo rhoncus, imperdiet arcu id, vestibulum massa. Pellentesque sed est enim. Cras vulputate ex a magna commodo efficitur.</p>
       <p>Vivamus sit amet rhoncus sapien. Nunc ac scelerisque eros. Donec sed magna eget nibh porttitor ultricies at id ligula. Suspendisse id lacus et libero congue rhoncus non vitae arcu. Curabitur dapibus sed justo non rutrum. Phasellus eget dapibus diam. Duis est velit, faucibus a turpis quis, rhoncus ultricies nulla.</p>
-      <h2>Subtitle</h2>
+      <onscroll>
+        <h2 class="{red:pos.top<250}">Subtitle will turn red when {pos.top} under 250 </h2>
+      </onscroll>
       <p>Pellentesque rhoncus nec nisl non aliquam. Donec vitae vehicula lacus. Etiam convallis mattis velit, vitae elementum turpis. Etiam id sollicitudin lacus, in euismod nibh. Aliquam quis elementum lectus, ut dignissim nisi. Nullam in libero eu dolor bibendum accumsan. Aliquam in dignissim ex, non placerat justo. Sed sed lacinia dui, sit amet semper elit. Cras consectetur in eros ac bibendum. Etiam felis arcu, sagittis ut sem nec, imperdiet pharetra justo. Morbi eleifend erat id mattis imperdiet. Etiam id bibendum tellus. Etiam eu est sollicitudin, finibus velit at, posuere arcu.</p>
       <onscroll>
-        <p class="{scrollshow:inviewport,scrollhide:!inviewport}">This show fade in. Maecenas a dapibus orci. Aliquam tristique id arcu a imperdiet. Nam ornare egestas tellus, vulputate pretium justo fermentum sit amet. Proin mollis risus ut ipsum auctor, id convallis dui auctor. Integer fermentum sit amet odio eget luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur ac elit massa. Aliquam rutrum feugiat odio, quis accumsan lorem bibendum et. Donec vitae metus ac ex iaculis posuere a eget diam. Aliquam a nisl placerat, volutpat augue nec, ultricies lectus. Maecenas ac dolor metus. Fusce auctor, ex a egestas dignissim, mi metus scelerisque nisi, in dignissim est nunc vel velit. Sed ultricies lacinia lacinia. Curabitur feugiat a quam non placerat.</p>
+        <div class="{scrollshow:pos.top<400,scrollhide:pos.top>400}">
+         
+        <h3>This should fade in</h3>
+        <p>Maecenas a dapibus orci. Aliquam tristique id arcu a imperdiet. Nam ornare egestas tellus, vulputate pretium justo fermentum sit amet. Proin mollis risus ut ipsum auctor, id convallis dui auctor. Integer fermentum sit amet odio eget luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur ac elit massa. Aliquam rutrum feugiat odio, quis accumsan lorem bibendum et. Donec vitae metus ac ex iaculis posuere a eget diam. Aliquam a nisl placerat, volutpat augue nec, ultricies lectus. Maecenas ac dolor metus. Fusce auctor, ex a egestas dignissim, mi metus scelerisque nisi, in dignissim est nunc vel velit. Sed ultricies lacinia lacinia. Curabitur feugiat a quam non placerat.</p>
+        </div>
       </onscroll>
-      <p>Vestibulum quis ornare nunc. Duis id risus purus. Aenean non gravida augue, nec pharetra turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam egestas commodo sapien et dignissim. Pellentesque ut neque suscipit ligula tincidunt congue. Nullam lectus lectus, feugiat at purus eu, porta tempor risus. Duis sed dolor eget mauris luctus aliquet eu interdum velit. Nullam vel enim mauris. Nam at vehicula massa. Sed ac lectus in orci gravida sagittis ut quis sem. Proin tortor turpis, condimentum in mollis sit amet, mattis sit amet urna. Pellentesque tincidunt orci id ex accumsan, non porta ipsum finibus. Suspendisse potenti.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus facilisis velit eget placerat. Etiam aliquet ornare leo sit amet consequat. Aliquam porta metus quis purus mattis ullamcorper. Aliquam viverra erat purus, sit amet ultrices libero blandit quis. Vestibulum sed justo rhoncus, imperdiet arcu id, vestibulum massa. Pellentesque sed est enim. Cras vulputate ex a magna commodo efficitur.</p>
-      <p>Vivamus sit amet rhoncus sapien. Nunc ac scelerisque eros. Donec sed magna eget nibh porttitor ultricies at id ligula. Suspendisse id lacus et libero congue rhoncus non vitae arcu. Curabitur dapibus sed justo non rutrum. Phasellus eget dapibus diam. Duis est velit, faucibus a turpis quis, rhoncus ultricies nulla.</p>
-      <p>Pellentesque rhoncus nec nisl non aliquam. Donec vitae vehicula lacus. Etiam convallis mattis velit, vitae elementum turpis. Etiam id sollicitudin lacus, in euismod nibh. Aliquam quis elementum lectus, ut dignissim nisi. Nullam in libero eu dolor bibendum accumsan. Aliquam in dignissim ex, non placerat justo. Sed sed lacinia dui, sit amet semper elit. Cras consectetur in eros ac bibendum. Etiam felis arcu, sagittis ut sem nec, imperdiet pharetra justo. Morbi eleifend erat id mattis imperdiet. Etiam id bibendum tellus. Etiam eu est sollicitudin, finibus velit at, posuere arcu.</p>
-      <p>Maecenas a dapibus orci. Aliquam tristique id arcu a imperdiet. Nam ornare egestas tellus, vulputate pretium justo fermentum sit amet. Proin mollis risus ut ipsum auctor, id convallis dui auctor. Integer fermentum sit amet odio eget luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur ac elit massa. Aliquam rutrum feugiat odio, quis accumsan lorem bibendum et. Donec vitae metus ac ex iaculis posuere a eget diam. Aliquam a nisl placerat, volutpat augue nec, ultricies lectus. Maecenas ac dolor metus. Fusce auctor, ex a egestas dignissim, mi metus scelerisque nisi, in dignissim est nunc vel velit. Sed ultricies lacinia lacinia. Curabitur feugiat a quam non placerat.</p>
-      <h2>Another thing...</h2>
-      <p>Vestibulum quis ornare nunc. Duis id risus purus. Aenean non gravida augue, nec pharetra turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam egestas commodo sapien et dignissim. Pellentesque ut neque suscipit ligula tincidunt congue. Nullam lectus lectus, feugiat at purus eu, porta tempor risus. Duis sed dolor eget mauris luctus aliquet eu interdum velit. Nullam vel enim mauris. Nam at vehicula massa. Sed ac lectus in orci gravida sagittis ut quis sem. Proin tortor turpis, condimentum in mollis sit amet, mattis sit amet urna. Pellentesque tincidunt orci id ex accumsan, non porta ipsum finibus. Suspendisse potenti.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus facilisis velit eget placerat. Etiam aliquet ornare leo sit amet consequat. Aliquam porta metus quis purus mattis ullamcorper. Aliquam viverra erat purus, sit amet ultrices libero blandit quis. Vestibulum sed justo rhoncus, imperdiet arcu id, vestibulum massa. Pellentesque sed est enim. Cras vulputate ex a magna commodo efficitur.</p>
-      <p>Vivamus sit amet rhoncus sapien. Nunc ac scelerisque eros. Donec sed magna eget nibh porttitor ultricies at id ligula. Suspendisse id lacus et libero congue rhoncus non vitae arcu. Curabitur dapibus sed justo non rutrum. Phasellus eget dapibus diam. Duis est velit, faucibus a turpis quis, rhoncus ultricies nulla.</p>
-      <p>Pellentesque rhoncus nec nisl non aliquam. Donec vitae vehicula lacus. Etiam convallis mattis velit, vitae elementum turpis. Etiam id sollicitudin lacus, in euismod nibh. Aliquam quis elementum lectus, ut dignissim nisi. Nullam in libero eu dolor bibendum accumsan. Aliquam in dignissim ex, non placerat justo. Sed sed lacinia dui, sit amet semper elit. Cras consectetur in eros ac bibendum. Etiam felis arcu, sagittis ut sem nec, imperdiet pharetra justo. Morbi eleifend erat id mattis imperdiet. Etiam id bibendum tellus. Etiam eu est sollicitudin, finibus velit at, posuere arcu.</p>
-      <p>Maecenas a dapibus orci. Aliquam tristique id arcu a imperdiet. Nam ornare egestas tellus, vulputate pretium justo fermentum sit amet. Proin mollis risus ut ipsum auctor, id convallis dui auctor. Integer fermentum sit amet odio eget luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur ac elit massa. Aliquam rutrum feugiat odio, quis accumsan lorem bibendum et. Donec vitae metus ac ex iaculis posuere a eget diam. Aliquam a nisl placerat, volutpat augue nec, ultricies lectus. Maecenas ac dolor metus. Fusce auctor, ex a egestas dignissim, mi metus scelerisque nisi, in dignissim est nunc vel velit. Sed ultricies lacinia lacinia. Curabitur feugiat a quam non placerat.</p>
-      <p>Vestibulum quis ornare nunc. Duis id risus purus. Aenean non gravida augue, nec pharetra turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam egestas commodo sapien et dignissim. Pellentesque ut neque suscipit ligula tincidunt congue. Nullam lectus lectus, feugiat at purus eu, porta tempor risus. Duis sed dolor eget mauris luctus aliquet eu interdum velit. Nullam vel enim mauris. Nam at vehicula massa. Sed ac lectus in orci gravida sagittis ut quis sem. Proin tortor turpis, condimentum in mollis sit amet, mattis sit amet urna. Pellentesque tincidunt orci id ex accumsan, non porta ipsum finibus. Suspendisse potenti.</p>
+      
+      <onscroll>
+        <flipcard style="width:100%;min-height:340px;">
+          <div class="front" onscroll="{parent.pos.top<200?front():back()}">
+            <p>Example using riot flipcard {parent.pos.top}</p>
+            <img class="img-responsive" src="image1.jpg" />
+          </div>
+          <div class="back">
+            <p>Example using riot flipcard</p>
+            <img class="img-responsive" src="image2.jpg" />
+          </div>
+        </flipcard>
+      </onscroll>
+      <br>
+      <onscroll class="slideins">
+        <p class="{scrollshow:inviewport,scrollhide:!inviewport}">Vestibulum quis ornare nunc. Duis id risus purus. Aenean non gravida augue, nec pharetra turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam egestas commodo sapien et dignissim. Pellentesque ut neque suscipit ligula tincidunt congue. Nullam lectus lectus, feugiat at purus eu, porta tempor risus. Duis sed dolor eget mauris luctus aliquet eu interdum velit. Nullam vel enim mauris. Nam at vehicula massa. Sed ac lectus in orci gravida sagittis ut quis sem. Proin tortor turpis, condimentum in mollis sit amet, mattis sit amet urna. Pellentesque tincidunt orci id ex accumsan, non porta ipsum finibus. Suspendisse potenti.</p>
+ 
+        <p class="{fromleft:pos.top>320}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus facilisis velit eget placerat. Etiam aliquet ornare leo sit amet consequat. Aliquam porta metus quis purus mattis ullamcorper. Aliquam viverra erat purus, sit amet ultrices libero blandit quis. Vestibulum sed justo rhoncus, imperdiet arcu id, vestibulum massa. Pellentesque sed est enim. Cras vulputate ex a magna commodo efficitur.</p>
+        
+        <p class="{fromright:pos.top>160}">Vivamus sit amet rhoncus sapien. Nunc ac scelerisque eros. Donec sed magna eget nibh porttitor ultricies at id ligula. Suspendisse id lacus et libero congue rhoncus non vitae arcu. Curabitur dapibus sed justo non rutrum. Phasellus eget dapibus diam. Duis est velit, faucibus a turpis quis, rhoncus ultricies nulla.</p>
+        
+        <p class="{fromleft:pos.top>50}">Pellentesque rhoncus nec nisl non aliquam. Donec vitae vehicula lacus. Etiam convallis mattis velit, vitae elementum turpis. Etiam id sollicitudin lacus, in euismod nibh. Aliquam quis elementum lectus, ut dignissim nisi. Nullam in libero eu dolor bibendum accumsan. Aliquam in dignissim ex, non placerat justo. Sed sed lacinia dui, sit amet semper elit. Cras consectetur in eros ac bibendum. Etiam felis arcu, sagittis ut sem nec, imperdiet pharetra justo. Morbi eleifend erat id mattis imperdiet. Etiam id bibendum tellus. Etiam eu est sollicitudin, finibus velit at, posuere arcu.</p>
+        
+        <p class="{fromright:pos.top>-100}">Maecenas a dapibus orci. Aliquam tristique id arcu a imperdiet. Nam ornare egestas tellus, vulputate pretium justo fermentum sit amet. Proin mollis risus ut ipsum auctor, id convallis dui auctor. Integer fermentum sit amet odio eget luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur ac elit massa. Aliquam rutrum feugiat odio, quis accumsan lorem bibendum et. Donec vitae metus ac ex iaculis posuere a eget diam. Aliquam a nisl placerat, volutpat augue nec, ultricies lectus. Maecenas ac dolor metus. Fusce auctor, ex a egestas dignissim, mi metus scelerisque nisi, in dignissim est nunc vel velit. Sed ultricies lacinia lacinia. Curabitur feugiat a quam non placerat.</p>
+      </onscroll>      
     </div>
   </div>
 
 <script src="https://cdn.jsdelivr.net/riot/2.4/riot+compiler.min.js"></script>
 <script src="lib/onscroll.js"></script>
+<script src="lib/flipcard.js"></script>
 <script>
   riot.mount('*')
 </script>
