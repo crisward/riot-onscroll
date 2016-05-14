@@ -70,8 +70,14 @@
       </onscroll>
       
       <p>This is just some dummy content to give us a nice long scrollable area to see how well this component can work</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus facilisis velit eget placerat. Etiam aliquet ornare leo sit amet consequat. Aliquam porta metus quis purus mattis ullamcorper. Aliquam viverra erat purus, sit amet ultrices libero blandit quis. Vestibulum sed justo rhoncus, imperdiet arcu id, vestibulum massa. Pellentesque sed est enim. Cras vulputate ex a magna commodo efficitur.</p>
-      <p>Vivamus sit amet rhoncus sapien. Nunc ac scelerisque eros. Donec sed magna eget nibh porttitor ultricies at id ligula. Suspendisse id lacus et libero congue rhoncus non vitae arcu. Curabitur dapibus sed justo non rutrum. Phasellus eget dapibus diam. Duis est velit, faucibus a turpis quis, rhoncus ultricies nulla.</p>
+      <onscroll>
+        <div style="height:200px;position:relative;border:1px solid #ddd;">
+          <div style="position:absolute;top:5px;text-align:center;right:0;left:0">pos.top:{pos.top}px</div>
+          <div style="position:absolute;top:90px;left:5px">pos.left:{pos.left}px</div>
+          <div style="position:absolute;top:90px;right:5px;">pos.right:{pos.right}px</div>
+          <div style="position:absolute;bottom:5px;text-align:center;right:0;left:0">pos.bottom:{pos.bottom}px</div>
+        </div>
+      </onscroll>
       <onscroll>
         <h2 class="{red:pos.top<250}">Subtitle will turn red when {pos.top} under 250 </h2>
       </onscroll>
