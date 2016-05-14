@@ -6,6 +6,7 @@ onscroll
     @on 'mount',->
       window.addEventListener('scroll',@handleScroll)
       @inviewport = @inViewport()
+      @prevPos = @pos
       @update()
       
     @on 'unmount',->
