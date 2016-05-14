@@ -13,7 +13,7 @@ onscroll
 
     @handleScroll = (e)=>
       newval = @inViewport()
-      diff = Math.abs((@pos.top+@pos.left) - (@prevPos.top+@prevPos.left))
+      diff = if @pos && @prevPos then Math.abs((@pos.top+@pos.left) - (@prevPos.top+@prevPos.left)) else 0
       if newval != @inviewport || diff>5
         @prevPos = @pos
         @inviewport = newval
