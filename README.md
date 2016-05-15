@@ -1,7 +1,5 @@
 <img src="https://cdn.rawgit.com/crisward/riot-onscroll/master/onscroll-logo.svg" height="140"/>
 
-This riot tag changes a local property on specific scroll criteria
-
 This adds the ability to position, animate and fade in components
 as the page scrolls. 
 
@@ -17,6 +15,7 @@ http://crisward.github.io/riot-onscroll/
 
 ## Usage
 
+simple example
 ```html
 <style>
   .show{
@@ -41,6 +40,29 @@ http://crisward.github.io/riot-onscroll/
 |pos.bottom | distance between the bottom of the onscroll tag and the viewport bottom
 |pos.left   | distance between the left of the onscroll tag and the viewport left
 
+
+
+more complex example
+```html
+<style>
+  p{
+    transition: all 1s;
+    opacity:1;
+    color:black;
+  }
+  .fadeout{
+    opacity:0;
+  }
+  .red{
+    color:red;
+  }
+</style>
+<onscroll>
+  <p class="{hide:pos.top<50}">Fades out 50px before the top</p>
+  <p class="{hide:pos.bottom<50}">Fades out 50px before the bottom</p>
+  <p class="{red:pos.top<250}">Turn red near top of document</p>
+</onscroll>
+```
 
 ## License
 
